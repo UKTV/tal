@@ -10,8 +10,7 @@
       "antie/devices/storage/cookie",
       "antie/devices/logging/onscreen",
       "antie/devices/logging/xhr",
-      "antie/devices/logging/jstestdriver",
-      "uktvplay/appui/devices/exit/cordovaexit"
+      "antie/devices/logging/jstestdriver"
     ]
   },
   "logging": {
