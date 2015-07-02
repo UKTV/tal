@@ -5,6 +5,7 @@
     "modifiers": [
       "antie/devices/anim/styletopleft",
       "uktvplay/appui/media/visualon",
+      "uktvplay/appui/devices/exit/tizenexit",
       "antie/devices/net/default",
       "antie/devices/data/nativejson",
       "antie/devices/storage/cookie",
