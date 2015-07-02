@@ -1,0 +1,14 @@
+<script type="text/javascript">
+	document.addEventListener('tizenhwkey', function(e) {
+		if(e.keyName === "back") {
+			try {
+				var e = document.createEvent('Events');
+				e.initEvent('keyup', true, true, null, null);
+				e.keyCode=4;
+				document.dispatchEvent(e);
+			} catch (error) {
+				console.error("getCurrentApplication(): " + error.message);
+			}
+		}
+	});
+</script>
