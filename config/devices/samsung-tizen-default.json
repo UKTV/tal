@@ -4,8 +4,8 @@
     "base": "antie/devices/browserdevice",
     "modifiers": [
       "antie/devices/anim/styletopleft",
-      "uktvplay/appui/media/samsungtizen",
-      "uktvplay/appui/devices/exit/tizenexit",
+      "antie/devices/media/samsungtizen",
+      "antie/devices/exit/tizen",
       "antie/devices/net/default",
       "antie/devices/data/nativejson",
       "antie/devices/storage/cookie",

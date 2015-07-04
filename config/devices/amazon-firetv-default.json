@@ -4,14 +4,14 @@
     "base": "antie/devices/browserdevice",
     "modifiers": [
       "antie/devices/anim/styletopleft",
-      "uktvplay/appui/media/visualon",
+      "antie/devices/media/visualon",
       "antie/devices/net/default",
       "antie/devices/data/nativejson",
       "antie/devices/storage/cookie",
       "antie/devices/logging/default",
       "antie/devices/logging/xhr",
       "antie/devices/logging/jstestdriver",
-      "uktvplay/appui/devices/exit/cordovaexit"
+      "antie/devices/exit/cordova"
     ]
   },
   "logging": {
