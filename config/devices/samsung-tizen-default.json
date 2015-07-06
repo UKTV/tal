@@ -103,6 +103,7 @@
     }
   ],
   "networking": {
-    "supportsJSONP": true
+    "supportsJSONP": false,
+    "supportsCORS": true
   }
 }
