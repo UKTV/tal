@@ -7,7 +7,7 @@
  */
 require.def(
     'antie/devices/exit/cordova',
-    ['antie/devices/browserdevice'],
+    ['antie/devices/device'],
     function(Device) {
         'use strict';
 

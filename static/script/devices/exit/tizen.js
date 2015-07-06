@@ -5,7 +5,7 @@
  */
 require.def(
     'antie/devices/exit/tizen', [
-        'antie/devices/browserdevice'
+        'antie/devices/device'
     ],
     function(Device) {
         'use strict';
