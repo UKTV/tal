@@ -13,7 +13,7 @@
     ]
   },
   "logging": {
-    "level": "all"
+    "level": "none"
   },
   "streaming": {
     "video": {
