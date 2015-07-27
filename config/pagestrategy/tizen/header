@@ -1,3 +1,4 @@
+<script type="text/javascript" src="$WEBAPIS/webapis/webapis.js"></script>
 <script type="text/javascript">
 	document.addEventListener('tizenhwkey', function(e) {
 		if(e.keyName === "back") {
