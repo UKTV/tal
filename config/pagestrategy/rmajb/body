@@ -1,0 +1,14 @@
+<script type="text/javascript">
+window.ajb.registerListener(ajb.MESSAGE_TYPE.NAVIGATION, function(value) {
+    if (value === 'back') {
+        console.log('attempting to navigate back');
+        var evt = {
+            keyCode: 166,
+            preventDefault: function(){}
+        };
+        document.onkeyup(evt);
+        return true;
+    }
+    return false;
+});
+</script>
