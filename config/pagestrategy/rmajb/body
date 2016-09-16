@@ -1,5 +1,5 @@
 <script type="text/javascript">
-window.ajb.registerListener(ajb.MESSAGE_TYPE.NAVIGATION, function(value) {
+window.ajb.registerListener(ajb.MessageType.NAVIGATION, function(value) {
     if (value === 'back') {
         console.log('attempting to navigate back');
         var evt = {

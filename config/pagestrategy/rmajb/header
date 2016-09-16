@@ -24,7 +24,7 @@
     /**
      * Expose the message type constants for clients to use.
      */
-    MESSAGE_TYPE: MESSAGE_TYPES,
+    MessageType: MESSAGE_TYPES,
 
     /**
      * Assigns a callback function to a message type.
@@ -61,18 +61,23 @@
      * Sends the given data to the Android app.
      */
     sendMessage: function(messageType, messageData) {
+      console.log('sendMessage');
       AJBHost.receiveMessage(JSON.stringify({
         type: messageType,
-        value: messageData
+        value: messageData || {}
       }));
-  },
+    },
 
     /**
      *
      */
     exitApp: function() {
         console.log('Sending message to exit app');
-        AJBHost.exitApp();
+        ajb.sendMessage('exitApp');
+    },
+
+    playVideo: function(opts) {
+        ajb.sendMessage('playVideo', opts);
     }
   };
 
