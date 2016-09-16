@@ -65,6 +65,14 @@
         type: messageType,
         value: messageData
       }));
+  },
+
+    /**
+     *
+     */
+    exitApp: function() {
+        console.log('Sending message to exit app');
+        AJBHost.exitApp();
     }
   };
 
