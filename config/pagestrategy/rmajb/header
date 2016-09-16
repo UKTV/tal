@@ -46,10 +46,9 @@
     receiveMessage: function(messageJSON) {
       try {
         var message = JSON.parse(messageJSON);
-        console.log('message of type ' + message.type + ' received');
         var messageType = message.type;
         if (listeners[message.type] && typeof listeners[message.type] === 'function') {
-          return !!listeners[message.type](message.value);
+          return !!listeners[message.type](message);
         }
       } catch (e) {
         console.warn('failed to parse received json ' + e);
@@ -61,7 +60,6 @@
      * Sends the given data to the Android app.
      */
     sendMessage: function(messageType, messageData) {
-      console.log('sendMessage');
       AJBHost.receiveMessage(JSON.stringify({
         type: messageType,
         value: messageData || {}
@@ -72,7 +70,6 @@
      *
      */
     exitApp: function() {
-        console.log('Sending message to exit app');
         ajb.sendMessage('exitApp');
     },
 
@@ -83,7 +80,7 @@
 
   // Assign the object to the given scope.
   scope.ajb = ajb;
-  console.log('AJB Initialized.');
+  console.log('**** AJB Initialized *****');
 
 })(window);
 </script>

@@ -1,7 +1,6 @@
 <script type="text/javascript">
-window.ajb.registerListener(ajb.MessageType.NAVIGATION, function(value) {
-    if (value === 'back') {
-        console.log('attempting to navigate back');
+window.ajb.registerListener(ajb.MessageType.NAVIGATION, function(message) {
+    if (message.value === 'back') {
         var evt = {
             keyCode: 166,
             preventDefault: function(){}
