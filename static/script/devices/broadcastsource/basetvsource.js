@@ -1,30 +1,10 @@
 /**
- * @fileOverview Requirejs module containing the antie.devices.broadcastsource.basetvsource class.
- *
- * @preserve Copyright (c) 2013-2014 British Broadcasting Corporation
- * (http://www.bbc.co.uk) and TAL Contributors (1)
- *
- * (1) TAL Contributors are listed in the AUTHORS file and at
- *     https://github.com/fmtvp/TAL/AUTHORS - please extend this file,
- *     not this notice.
- *
- * @license Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * All rights reserved
- * Please contact us for an alternative licence
+ * @fileOverview Requirejs module containing base antie.devices.bradcastsource.basetvsource class.
+ * @preserve Copyright (c) 2013-present British Broadcasting Corporation. All rights reserved.
+ * @license See https://github.com/fmtvp/tal/blob/master/LICENSE for full licence
  */
 
-require.def(
+define(
     'antie/devices/broadcastsource/basetvsource',
     [
         'antie/class'
@@ -73,7 +53,7 @@ require.def(
              * @param params.onError function called if retrieving the channel list fails.
              * @returns an array of strings, each representing an available channel
              */
-            getChannelNameList : function (/*params*/) { //jshint ignore:line
+            getChannelNameList : function (/*params*/) {
                 throw new Error('Device broadcast source does not override abstract method getChannelList');
             },
             /**
@@ -84,7 +64,7 @@ require.def(
              * @param width
              * @param height
              */
-            setPosition : function(/*top, left, width, height*/) { //jshint ignore:line
+            setPosition : function(/*top, left, width, height*/) {
                 throw new Error('Device broadcast source does not override abstract method setPosition');
             },
         /**
@@ -100,7 +80,7 @@ require.def(
              * @param params.onSuccess function to be called if the tuner was retuned successfully
              * @param params.onError function to be called if the provided channel was unable to be tuned
              */
-            setChannelByName : function(/*params*/) { //jshint ignore:line
+            setChannelByName : function(/*params*/) {
                 throw new Error('Device broadcast source does not override abstract method setChannelByName');
             },
             /**

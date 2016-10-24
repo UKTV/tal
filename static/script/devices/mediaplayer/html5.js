@@ -1,30 +1,10 @@
 /**
  * @fileOverview Requirejs module containing device modifier for HTML5 media playback
- *
- * @preserve Copyright (c) 2014 British Broadcasting Corporation
- * (http://www.bbc.co.uk) and TAL Contributors (1)
- *
- * (1) TAL Contributors are listed in the AUTHORS file and at
- *     https://github.com/fmtvp/TAL/AUTHORS - please extend this file,
- *     not this notice.
- *
- * @license Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * All rights reserved
- * Please contact us for an alternative licence
+ * @preserve Copyright (c) 2013-present British Broadcasting Corporation. All rights reserved.
+ * @license See https://github.com/fmtvp/tal/blob/master/LICENSE for full licence
  */
 
-require.def(
+define(
     'antie/devices/mediaplayer/html5',
     [
         'antie/runtimecontext',
@@ -81,25 +61,25 @@ require.def(
                     var self = this;
                     this._wrapOnFinishedBuffering = function() {
                         self._onFinishedBuffering();
-                    }; //jshint ignore:line
+                    };
                     this._wrapOnError = function() {
                         self._onDeviceError();
-                    }; //jshint ignore:line
+                    };
                     this._wrapOnEndOfMedia = function() {
                         self._onEndOfMedia();
-                    }; //jshint ignore:line
+                    };
                     this._wrapOnDeviceBuffering = function() {
                         self._onDeviceBuffering();
-                    }; //jshint ignore:line
+                    };
                     this._wrapOnStatus = function() {
                         self._onStatus();
-                    }; //jshint ignore:line
+                    };
                     this._wrapOnMetadata = function() {
                         self._onMetadata();
-                    }; //jshint ignore:line
+                    };
                     this._wrapOnSourceError = function() {
                         self._onSourceError();
-                    }; //jshint ignore:line
+                    };
                     this._mediaElement.addEventListener('canplay', this._wrapOnFinishedBuffering, false);
                     this._mediaElement.addEventListener('seeked', this._wrapOnFinishedBuffering, false);
                     this._mediaElement.addEventListener('playing', this._wrapOnFinishedBuffering, false);

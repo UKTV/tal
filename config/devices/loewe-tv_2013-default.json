@@ -4,10 +4,8 @@
     "base": "antie/devices/browserdevice",
     "modifiers": [
       "antie/devices/anim/css3",
-      "antie/devices/media/cehtml",
       "antie/devices/mediaplayer/cehtml",
       "antie/devices/mediaplayer/live/none",
-      "antie/devices/net/default",
       "antie/devices/data/nativejson",
       "antie/devices/storage/cookie",
       "antie/devices/logging/consumelog",

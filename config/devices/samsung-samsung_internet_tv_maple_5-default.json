@@ -4,13 +4,10 @@
     "base": "antie/devices/browserdevice",
     "modifiers": [
 	  "antie/devices/anim/noanim",
-      "antie/devices/media/samsung_maple",
       "antie/devices/mediaplayer/samsung_maple",
       "antie/devices/mediaplayer/live/none",
-      "antie/devices/net/default",
       "antie/devices/data/json2",
       "antie/devices/storage/cookie",
-      "antie/devices/net/xhrthiswindow",
       "antie/devices/logging/onscreen",
       "antie/devices/logging/xhr",
       "antie/devices/logging/jstestdriver",

@@ -1,6 +1,11 @@
+/**
+ * @preserve Copyright (c) 2013-present British Broadcasting Corporation. All rights reserved.
+ * @license See https://github.com/fmtvp/tal/blob/master/LICENSE for full licence
+ */
+
 (function() {
-    /* jshint newcap: false */
-    this.HistorianTest = AsyncTestCase('Historian'); //jshint ignore:line
+
+    this.HistorianTest = AsyncTestCase('Historian');
 
     this.HistorianTest.prototype.setUp = function() {
         this.sandbox = sinon.sandbox.create();

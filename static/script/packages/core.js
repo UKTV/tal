@@ -1,4 +1,9 @@
-require.def('antie/packages/core',[
+/**
+ * @preserve Copyright (c) 2013-present British Broadcasting Corporation. All rights reserved.
+ * @license See https://github.com/fmtvp/tal/blob/master/LICENSE for full licence
+ */
+
+define('antie/packages/core',[
     'antie/application',
     'antie/mediasource',
     'antie/videosource',
@@ -15,7 +20,6 @@ require.def('antie/packages/core',[
     'antie/widgets/image',
     'antie/widgets/label',
     'antie/widgets/button',
-    'antie/widgets/media',
     'antie/widgets/verticallist',
     'antie/widgets/horizontallist'
 ], function() {});

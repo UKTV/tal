@@ -1,31 +1,11 @@
 /**
  * @fileOverview Requirejs module containing device modifier for live playback
  * with support level Seekable
- *
- * @preserve Copyright (c) 2015 British Broadcasting Corporation
- * (http://www.bbc.co.uk) and TAL Contributors (1)
- *
- * (1) TAL Contributors are listed in the AUTHORS file and at
- *     https://github.com/fmtvp/TAL/AUTHORS - please extend this file,
- *     not this notice.
- *
- * @license Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * All rights reserved
- * Please contact us for an alternative licence
+ * @preserve Copyright (c) 2013-present British Broadcasting Corporation. All rights reserved.
+ * @license See https://github.com/fmtvp/tal/blob/master/LICENSE for full licence
  */
 
-require.def(
+define(
     'antie/devices/mediaplayer/live/seekable',
     [
         'antie/class',
@@ -35,6 +15,7 @@ require.def(
     ],
     function (Class, RuntimeContext, Device, MediaPlayer) {
         'use strict';
+        var AUTO_RESUME_WINDOW_START_CUSHION_SECONDS = 8;
 
         /**
          * Live player for devices that have full support for playing and seeking live streams.
@@ -77,13 +58,22 @@ require.def(
             },
 
             pause: function (opts) {
-                this._mediaPlayer.pause();
                 opts = opts || {};
-                if(opts.disableAutoResume !== true){
+                var secondsUntilStartOfWindow = this._mediaPlayer.getCurrentTime() - this._mediaPlayer.getSeekableRange().start;
+
+                if (opts.disableAutoResume) {
+                    this._mediaPlayer.pause();
+                } else if (secondsUntilStartOfWindow <= AUTO_RESUME_WINDOW_START_CUSHION_SECONDS) {
+                    // IPLAYERTVV1-4166
+                    // We can't pause so close to the start of the sliding window, so do a quick state transition in and
+                    // out on 'pause' state to be consistent with the rest of TAL.
+                    this._mediaPlayer._toPaused();
+                    this._mediaPlayer._toPlaying();
+                } else {
+                    this._mediaPlayer.pause();
                     this._autoResumeAtStartOfRange();
                 }
             },
-
             resume: function () {
                 this._mediaPlayer.resume();
             },
@@ -134,12 +124,12 @@ require.def(
 
             _autoResumeAtStartOfRange: function () {
                 var self = this;
-                var timeUntilStartOfWindow = Math.max(0, this._mediaPlayer.getCurrentTime() - this._mediaPlayer.getSeekableRange().start);
+                var secondsUntilAutoResume = Math.max(0, this._mediaPlayer.getCurrentTime() - this._mediaPlayer.getSeekableRange().start - AUTO_RESUME_WINDOW_START_CUSHION_SECONDS);
 
                 var autoResumeTimer = setTimeout(function () {
                     self.removeEventCallback(self, detectIfUnpaused);
                     self.resume();
-                }, timeUntilStartOfWindow * 1000);
+                }, secondsUntilAutoResume * 1000);
 
                 this.addEventCallback(this, detectIfUnpaused);
                 function detectIfUnpaused(event) {

@@ -1,15 +1,13 @@
 /**
- * @preserve Copyright (c) 2015 British Broadcasting Corporation. All rights reserved.
+ * @preserve Copyright (c) 2013-present British Broadcasting Corporation. All rights reserved.
  * @license See https://github.com/fmtvp/tal/blob/master/LICENSE for full licence
  */
 
 (function() {
-    this.stubbedSource = AsyncTestCase('Stubbed Broadcast Source'); //jshint ignore:line
+    this.stubbedSource = AsyncTestCase('Stubbed Broadcast Source');
 
     var config = {'modules':{'base':'antie/devices/browserdevice','modifiers':[
         'antie/devices/anim/styletopleft',
-        'antie/devices/media/html5',
-        'antie/devices/net/default',
         'antie/devices/broadcastsource/stubbedsource',
         'antie/devices/data/nativejson',
         'antie/devices/storage/cookie',

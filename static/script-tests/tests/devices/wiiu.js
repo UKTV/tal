@@ -1,29 +1,12 @@
 /**
+ * @preserve Copyright (c) 2013-present British Broadcasting Corporation. All rights reserved.
+ * @license See https://github.com/fmtvp/tal/blob/master/LICENSE for full licence
+ */
+
+/**
  * @fileOverview Input mapping tests for the antie.devices.WiiU class (support for the WiiU NWF).
  * @author Ian Arundale <ian.arundale@bbc.co.uk>
  * @notes Mocked API's map to the Wii U SDK >= 2.0.8.11
- *
- * @preserve Copyright (c) 2013 British Broadcasting Corporation
- * (http://www.bbc.co.uk) and TAL Contributors (1)
- *
- * (1) TAL Contributors are listed in the AUTHORS file and at
- *     https://github.com/fmtvp/TAL/AUTHORS - please extend this file,
- *     not this notice.
- *
- * @license Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * All rights reserved
- * Please contact us for an alternative licence
  */
 
 (function() {
@@ -33,7 +16,7 @@
     this.WiiUDevice.prototype.setUp = function() {
         this.sandbox = sinon.sandbox.create();
         stubNWFSpecificApis();
-        this.wiiuConfig = {'modules':{'base':'antie/devices/wiiu','modifiers':['antie/devices/data/json2','antie/devices/anim/styletopleft', 'antie/devices/media/html5']},'input':{'map':{}},'layouts':[
+        this.wiiuConfig = {'modules':{'base':'antie/devices/wiiu','modifiers':['antie/devices/data/json2','antie/devices/anim/styletopleft']},'input':{'map':{}},'layouts':[
             {'width':960,'height':540,'module':'fixtures/layouts/default','classes':['browserdevice540p']}
         ],'deviceConfigurationKey':'devices-html5-1'};
     };
@@ -54,7 +37,7 @@
 
         var gamePadEventListenerSpy = this.sandbox.spy(window.nwf.input.WiiUGamePad, '_privateAddEventListener');
 
-        queuedApplicationInit(queue, 'lib/mockapplication', [], function() { //jshint ignore:line
+        queuedApplicationInit(queue, 'lib/mockapplication', [], function() {
             assertTrue(gamePadEventListenerSpy.called);
             assertEquals(nwf.events.ButtonControlEvent.PRESS, gamePadEventListenerSpy.getCall(0).args[0]);
             assertEquals(nwf.events.ButtonControlEvent.RELEASE, gamePadEventListenerSpy.getCall(1).args[0]);
@@ -119,7 +102,7 @@
         expectAsserts(1);
         var self = this;
 
-        queuedApplicationInit(queue, 'lib/mockapplication', [], function(application) { //jshint ignore:line
+        queuedApplicationInit(queue, 'lib/mockapplication', [], function(application) {
             var bubbleEventSpy = this.sandbox.spy(application, 'bubbleEvent');
             mockGamePadButtonPress(application, window.nwf.input.ControllerButton.GAMEPAD_X);
             mockGamePadButtonRelease(application, window.nwf.input.ControllerButton.GAMEPAD_X);
@@ -132,7 +115,7 @@
         expectAsserts(1);
         var self = this;
 
-        queuedApplicationInit(queue, 'lib/mockapplication', [], function(application) { //jshint ignore:line
+        queuedApplicationInit(queue, 'lib/mockapplication', [], function(application) {
             var bubbleEventSpy = this.sandbox.spy(application, 'bubbleEvent');
             mockGamePadButtonPress(application, window.nwf.input.ControllerButton.GAMEPAD_Y);
             mockGamePadButtonRelease(application, window.nwf.input.ControllerButton.GAMEPAD_Y);
@@ -261,7 +244,7 @@
 
         var gamePadEventListenerSpy = this.sandbox.spy(window.nwf.input.WiiRemote, '_privateAddEventListener');
 
-        queuedApplicationInit(queue, 'lib/mockapplication', [], function() { //jshint ignore:line
+        queuedApplicationInit(queue, 'lib/mockapplication', [], function() {
             assertTrue(gamePadEventListenerSpy.called);
             assertEquals(nwf.events.ButtonControlEvent.PRESS, gamePadEventListenerSpy.getCall(0).args[0]);
             assertEquals(nwf.events.ButtonControlEvent.RELEASE, gamePadEventListenerSpy.getCall(1).args[0]);
@@ -462,13 +445,13 @@
                     };
                     return controllerObject;
                 },
-                _privateAddEventListener : function() { //jshint ignore:line
+                _privateAddEventListener : function() {
                     // Stub this out to ensure the event listener has been called correctly
                 }
             },
             WiiRemote: {
                 REMOTE_1 : 'TBA',
-                getController : function() { //jshint ignore:line
+                getController : function() {
                     var self = this;
                     var controllerObject = {
                         connected: true,
@@ -480,7 +463,7 @@
                     };
                     return controllerObject;
                 },
-                _privateAddEventListener : function() { //jshint ignore:line
+                _privateAddEventListener : function() {
                     // Stub this out to ensure the event listener has been called correctly
                 }
             }

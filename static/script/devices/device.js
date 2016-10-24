@@ -1,27 +1,7 @@
 /**
- * @fileOverview Requirejs module containing the antie.Device class.
- *
- * @preserve Copyright (c) 2013 British Broadcasting Corporation
- * (http://www.bbc.co.uk) and TAL Contributors (1)
- *
- * (1) TAL Contributors are listed in the AUTHORS file and at
- *     https://github.com/fmtvp/TAL/AUTHORS - please extend this file,
- *     not this notice.
- *
- * @license Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * All rights reserved
- * Please contact us for an alternative licence
+ * @fileOverview Requirejs modifier with antie.devices.device base class.
+ * @preserve Copyright (c) 2013-present British Broadcasting Corporation. All rights reserved.
+ * @license See https://github.com/fmtvp/tal/blob/master/LICENSE for full licence
  */
 
 /**
@@ -50,7 +30,7 @@
  * @namespace
  */
 
-require.def(
+define(
     'antie/devices/device',
     [
         'antie/class',
@@ -203,7 +183,6 @@ require.def(
                 this.filteredLoggingMethods = filterLoggingMethods(config, selectLoggingStrategy(config, this.loggingStrategies));
 
                 function filterLoggingMethods(config, loggingMethods) {
-                    /* jshint -W086 */ // We're falling through case statements deliberately
                     var filteredLogging = ignoreLoggingMethods;
 
                     if (config.logging && config.logging.level) {
@@ -287,7 +266,7 @@ require.def(
              * @param {Array} [classNames] An array of class names to apply to the element.
              * @returns A container element within the device's user-agent.
              */
-            createContainer: function(/*id, classNames*/) { //jshint ignore:line
+            createContainer: function(/*id, classNames*/) {
             },
             /**
              * -PROTECTED- Creates a label (an element that only contains text) in the device's user-agent.
@@ -298,7 +277,7 @@ require.def(
              * @param {String} [text] The text within the label.
              * @returns A label within the device's user-agent.
              */
-            createLabel: function(/*id, classNames, text*/) { //jshint ignore:line
+            createLabel: function(/*id, classNames, text*/) {
             },
             /**
              * -PROTECTED- Creates a button (an element that can be selected by the user to perform an action) in the device's user-agent.
@@ -308,7 +287,7 @@ require.def(
              * @param {Array} [classNames] An array of class names to apply to the element.
              * @returns A button within the device's user-agent.
              */
-            createButton: function(/*id, classNames*/) { //jshint ignore:line
+            createButton: function(/*id, classNames*/) {
             },
             /**
              * -PROTECTED- Creates a list in the device's user-agent.
@@ -318,7 +297,7 @@ require.def(
              * @param {Array} [classNames] An array of class names to apply to the element.
              * @returns A list within the device's user-agent.
              */
-            createList: function(/*id, classNames*/) { //jshint ignore:line
+            createList: function(/*id, classNames*/) {
             },
             /**
              * -PROTECTED- Creates a list item in the device's user-agent.
@@ -328,7 +307,7 @@ require.def(
              * @param {Array} [classNames] An array of class names to apply to the element.
              * @returns A list item within the device's user-agent.
              */
-            createListItem: function(/*id, classNames*/) { //jshint ignore:line
+            createListItem: function(/*id, classNames*/) {
             },
             /**
              * -PROTECTED- Creates an image in the device's user-agent.
@@ -339,21 +318,21 @@ require.def(
              * @param {String} src The source URL of the image.
              * @returns An image within the device's user-agent.
              */
-            createImage: function(/*id, classNames, src*/) { //jshint ignore:line
+            createImage: function(/*id, classNames, src*/) {
             },
             /**
              * Appends an element as a child of another.
              * @param {Element} to Append as a child of this element.
              * @param {Element} el The new child element.
              */
-            appendChildElement: function(/*to, el*/) { //jshint ignore:line
+            appendChildElement: function(/*to, el*/) {
             },
             /**
              * Sets the classes of an element.
              * @param {Element} el The element which will receive new class names.
              * @param {Array} classNames An array of class names.
              */
-            setElementClasses: function(/*el, classNames*/) { //jshint ignore:line
+            setElementClasses: function(/*el, classNames*/) {
             },
             /**
              * Removes a class from an element (and optionally descendants)
@@ -361,14 +340,14 @@ require.def(
              * @param {String} className The class to remove.
              * @param {Boolean} [deep] If true, and this element has the given class, remove the class from it's children recursively.
              */
-            removeClassFromElement: function(/*el, className, deep*/) { //jshint ignore:line
+            removeClassFromElement: function(/*el, className, deep*/) {
             },
             /**
              * Adds a class name to an element
              * @param {Element} el The element which will receive new class name.
              * @param {String} className The new class name to add.
              */
-            addClassToElement: function(/*el, className*/) { //jshint ignore:line
+            addClassToElement: function(/*el, className*/) {
             },
             /**
              * Adds global key event listener(s) to the user-agent.
@@ -389,45 +368,45 @@ require.def(
              * @param {String} tagName The tag name you are looking for.
              * @returns An array of elements having the provided tag name.
              */
-            getChildElementsByTagName: function(/*el, tagName*/) { //jshint ignore:line
+            getChildElementsByTagName: function(/*el, tagName*/) {
             },
             /**
              * Returns the top-level element. This is the target of layout class names.
              * @return The top-level DOM element.
              */
-            getTopLevelElement: function() { //jshint ignore:line
+            getTopLevelElement: function() {
             },
             /**
              * Returns all the loaded stylesheet elements.
              * @return An array containing all loaded stylesheet elements (link and style elements)
              */
-            getStylesheetElements: function() { //jshint ignore:line
+            getStylesheetElements: function() {
             },
             /**
              * Returns the offset of the element within its offset container.
              * @param {Element} el The element you wish to know the offset of.
              * @return An literal object containing properties, top and left.
              */
-            getElementOffset: function(/*el*/) { //jshint ignore:line
+            getElementOffset: function(/*el*/) {
             },
             /**
              * Gets the size of an element.
              * @param {Element} el The element of which to return the size.
              * @returns A size object containing the width and height of the element.
              */
-            getElementSize: function(/*el*/) { //jshint ignore:line
+            getElementSize: function(/*el*/) {
             },
             /**
              * Sets the size of an element.
              * @param {Element} el The element of which to set the size.
              * @param {Size} size The new size of the element.
              */
-            setElementSize: function(/*el, size*/) { //jshint ignore:line
+            setElementSize: function(/*el, size*/) {
             },
             /**
-             * -PROTECTED- Scroll an element (within some masking container) so that its top-left corner is at the given position.
-             * Note, fps duration and easing parameters currently only implemented when using styletopleft modifier.
-             * Do not use from within applications, instead use scrolling methods on the widget you wish to scroll. This method may be deprecated in future.
+             * Scroll an element (within some masking container) so that its top-left corner is at the given position.
+             * Note: fps parameter currently only implemented when using styletopleft animation modifier.
+             * Consider using scrolling methods on the widget you wish to scroll (e.g. carousels). This method may be deprecated in future.
              * @param {Object} options
              * @param {Element} options.el The element you wish to scroll.
              * @param {Integer} [options.to.left] The x-coordinate you wish to position the top-left corner on. If null, the x-coordinate will not be altered.
@@ -440,12 +419,12 @@ require.def(
              * @returns {Object} A handle to any animation started
              * @see antie.devices.Device#stopAnimation
              */
-            scrollElementTo: function(/*options*/) { //jshint ignore:line
+            scrollElementTo: function(/*options*/) {
             },
             /**
-             * -PROTECTED- Moves an element so that its top-left corner is at the given position.
-             * Note, fps duration and easing parameters currently only implemented when using styletopleft modifier.
-             * Do not use from within applications, instead use the animation methods on the widget you want to move
+             * Moves an element so that its top-left corner is at the given position.
+             * Note: fps parameter currently only implemented when using styletopleft animation modifier.
+             * Consider using any animation methods on the widget you want to move. This method may be deprecated in future.
              * @param {Object} options
              * @param {Element} options.el The element you wish to move.
              * @param {Integer} [options.to.left] The x-coordinate you wish to position the top-left corner on. If null, the x-coordinate will not be altered.
@@ -458,12 +437,12 @@ require.def(
              * @returns {Object} A handle to any animation started
              * @see #stopAnimation
              */
-            moveElementTo: function(/*options*/) { //jshint ignore:line
+            moveElementTo: function(/*options*/) {
             },
             /**
-             * -PROTECTED- Hides an element.
-             * Note, fps duration and easing parameters currently only implemented when using styletopleft modifier.
-             * Do not use from within applications, instead use the animation methods on the widget you want to hide.
+             * Hides an element.
+             * Note: fps parameter currently only implemented when using styletopleft animation modifier.
+             * Consider using higher-level methods on the widget you want to hide (e.g. Component.hide()).
              * @param {Object}  options Details of the element to be hidden, with optional parameters.
              * @param {Element} options.el The element you wish to hide.
              * @param {Boolean} [options.skipAnim] By default the hiding of the element will be animated (faded out). Pass <code>true</code> here to prevent animation.
@@ -474,12 +453,12 @@ require.def(
              * @returns {Object} A handle to any animation started.
              * @see #stopAnimation
              */
-            hideElement: function(/*options*/) { //jshint ignore:line
+            hideElement: function(/*options*/) {
             },
             /**
-             * -PROTECTED- Shows an element.
-             * Note, fps duration and easing parameters currently only implemented when using styletopleft modifier.
-             * Do not use from within applications, instead use the animation methods on the widget you want to hide.
+             * Shows an element.
+             * Note: fps and easing parameters only used by styletopleft modifier.
+             * Consider using higher-level methods on the widget you want to show (e.g. ComponentContainer.show()).
              * @param {Object}  options Details of the element to be shown, with optional parameters.
              * @param {Element} options.el The element you wish to show.
              * @param {Boolean} [options.skipAnim] By default the showing of the element will be animated (faded in). Pass <code>true</code> here to prevent animation.
@@ -490,11 +469,11 @@ require.def(
              * @returns {Object} A handle to any animation started.
              * @see #stopAnimation
              */
-            showElement: function(/*options*/) { //jshint ignore:line
+            showElement: function(/*options*/) {
             },
             /**
-             * -PROTECTED- Tweens a property (or properties) of an element's style from one value to another.
-             * Note fps only used by styletopleft modifier.
+             * Tweens a property (or properties) of an element's style from one value to another.
+             * Note: fps parameter currently only implemented when using styletopleft animation modifier.
              * @param {Object} options Details of the element whose style will be tweened, with parameters describing tween.
              * @param {Element} options.el The element with a style you wish to tween.
              * @param {Object} options.to A property: value map of the style properties you wish to tween and the numerical value of its destination, e.g { width: 30 }
@@ -507,26 +486,26 @@ require.def(
              * @param {Number} [options.fps] Frames per second of animation (styletopleft only)
              * @returns {Object} A handle to animation started. This should only be used for passing to stopAnimation and nothing else should be inferred by its value. If no animation occurs, null may be returned but should not be used as an indicator.
              */
-            tweenElementStyle: function(/*options*/){ //jshint ignore:line
+            tweenElementStyle: function(/*options*/){
 
             },
             /**
              * Stops the specified animation. The any completeHandler for the animation will be executed.
              * @param {object} anim A handle to the animation you wish to stop.
              */
-            stopAnimation: function(/*anim*/) { //jshint ignore:line
+            stopAnimation: function(/*anim*/) {
             },
             /**
              * Encodes an object as JSON.
              * @param {object} obj Object to encode.
              */
-            encodeJson: function(/*obj*/) { //jshint ignore:line
+            encodeJson: function(/*obj*/) {
             },
             /**
              * Decodes JSON.
              * @param {String} json JSON to decode.
              */
-            decodeJson: function(/*json*/) { //jshint ignore:line
+            decodeJson: function(/*json*/) {
             },
             /**
              * Gets the current key map from the device configuration.
@@ -542,7 +521,7 @@ require.def(
              * @param mediaType Type of media. "audio" or "video"
              * @param eventCallback Function that is called to processes media events.
              */
-            createMediaInterface: function(/*id, mediaType, eventCallback*/) { //jshint ignore:line
+            createMediaInterface: function(/*id, mediaType, eventCallback*/) {
             },
             /**
              * Get the media player.
@@ -570,14 +549,14 @@ require.def(
              * @param {String} mediaType "video" or "radio".
              * @returns The embed mode of the current player
              */
-            getPlayerEmbedMode: function(/*mediaType*/) { //jshint ignore:line
+            getPlayerEmbedMode: function(/*mediaType*/) {
                 // mediaType: video or audio
             },
             /**
              * Sets the current route (a reference pointing to a location within the application).
              * @param {Array} route A route pointing to a location within the application.
              */
-            setCurrentRoute: function(/*route*/) { //jshint ignore:line
+            setCurrentRoute: function(/*route*/) {
             },
             /**
              * Gets the current route (a reference pointing to a location within the application).
@@ -600,7 +579,7 @@ require.def(
              * to manipulate the current location more easily.
              * @param {String} url Full URL to navigate to, including search and hash if applicable.
              */
-            setWindowLocationUrl: function(/*url*/) { //jshint ignore:line
+            setWindowLocationUrl: function(/*url*/) {
             },
             /**
              * Gets the reference (e.g. URL) of the resource that launched the application.
@@ -609,16 +588,52 @@ require.def(
             getReferrer: function() {
             },
             /**
-             * Loads an external script that calls a specified callback function.
-             * Used for loading data via JSON-P.
-             * @param {String} url The URL of the script.
-             * @param {RegExp} callbackFunctionRegExp Regular expression to replace matches with callback function name.
-             * @param {Object} callbacks Object containing onSuccess and onLoad callback functions.
-             * @param {Integer} timeout Timeout in milliseconds.
-             * @param {String} [callbackSuffix] Suffix to append to end of callback function name.
-             * @returns The script element that will load the script.
-             */
-            loadScript: function(/*url, callbackFunctionRegExp, callbacks, timeout, callbackSuffix*/) { //jshint ignore:line
+            * Loads an external script that calls a specified callback function.
+            * Used for loading data via JSON-P.
+            * @param {String} url The URL of the script.
+            * @param {RegExp} callbackFunctionRegExp Regular expression to replace matches with callback function name.
+            * @param {Object} callbacks Object containing onSuccess and onLoad callback functions.
+            * @param {Integer} timeout Timeout in milliseconds.
+            * @param {String} [callbackSuffix] Suffix to append to end of callback function name.
+            * @returns The script element that will load the script.
+            */
+            loadScript: function (url, callbackFunctionRegExp, callbacks, timeout, callbackSuffix) {
+                var self = this;
+                var script = null;
+                var funcName = '_antie_callback_' + (callbackSuffix || ((new Date() * 1) + '_' + Math.floor(Math.random() * 10000000)));
+
+                if (window[funcName]) {
+                    throw 'A request with the name ' + funcName + ' is already in flight';
+                }
+
+                var timeoutHandle = window.setTimeout(function () {
+                    if (window[funcName]) {
+                        if (script) {
+                            self.removeElement(script);
+                        }
+                        delete window[funcName];
+                        if (callbacks && callbacks.onError) {
+                            callbacks.onError('timeout');
+                        }
+                    }
+                }, timeout || 5000);
+
+                window[funcName] = function (obj) {
+                    if (timeout) {
+                        window.clearTimeout(timeoutHandle);
+                    }
+                    if (callbacks && callbacks.onSuccess) {
+                        callbacks.onSuccess(obj);
+                    }
+                    self.removeElement(script);
+                    delete window[funcName];
+                };
+
+                script = this._createElement('script');
+                script.src = url.replace(callbackFunctionRegExp, funcName);
+                var head = document.getElementsByTagName('head')[0];
+                head.appendChild(script);
+                return script;
             },
             /**
              * Loads an external style sheet.
@@ -626,60 +641,266 @@ require.def(
              * @param {function(String)} [callback] Callback function when style has loaded/failed
              * @returns The link element that will load the style sheet.
              */
-            loadStyleSheet: function(/*url, callback*/) { //jshint ignore:line
+            loadStyleSheet: function(/*url, callback*/) {
+            },
+             /**
+              * Loads a resource from a URL protected by device authentication.
+              * @param {String} url The URL to load.
+              * @param {Object} opts Object containing onLoad and onError callback functions.
+              * @returns The request object used to load the resource.
+              */
+            loadAuthenticatedURL: function (url, opts) {
+                // Simple implementation - assuming XHR in browser can perform client-authenticated SSL requests
+                return this.loadURL(url, opts);
             },
             /**
-             * Loads a resource from a URL protected by device authentication.
-             * @param {String} url The URL to load.
-             * @param {Object} opts Object containing onLoad and onError callback functions.
-             * @returns The request object used to load the resource.
+             * Returns a new XMLHttpRequest. Overridden in unit tests.
+             * @returns {XMLHttpRequest} a new instance
+             * @private
              */
-            loadAuthenticatedURL: function(/*url, opts*/) { //jshint ignore:line
+            _newXMLHttpRequest: function() {
+                return new XMLHttpRequest();
             },
+
             /**
              * Loads a resource from a URL.
              * @param {String} url The URL to load.
              * @param {Object} opts Object containing onLoad and onError callback functions.
-             * @returns The request object used to load the resource.
+             * @returns {XMLHttpRequest} The request object used to load the resource.
              */
-            loadURL: function(/*url, opts*/) { //jshint ignore:line
+            loadURL: function (url, opts) {
+                var xhr = this._newXMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        xhr.onreadystatechange = null;
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            if (opts.onLoad) {
+                                opts.onLoad(xhr.responseText, xhr.status);
+                            }
+                        } else {
+                            if (opts.onError) {
+                                opts.onError(xhr.responseText, xhr.status);
+                            }
+                        }
+                    }
+                };
+
+                try {
+                    xhr.open(opts.method || 'GET', url, true);
+                    // TODO The opts protection in the following expression is redundant as there are lots of other places an undefined opts will cause TypeError to be thrown
+                    if (opts && opts.headers) {
+                        for (var header in opts.headers) {
+                            if (opts.headers.hasOwnProperty(header)) {
+                                xhr.setRequestHeader(header, opts.headers[header]);
+                            }
+                        }
+                    }
+                    xhr.send(opts.data || null);
+                } catch (ex) {
+                    if (opts.onError) {
+                        opts.onError(ex);
+                    }
+                }
+                return xhr;
             },
+
             /**
              * Performs a POST HTTP request to a URL on a different host/domain.
              * @param {String} url The URL to post to.
              * @param {Object} data Associative array of fields/values to post.
              * @param {Object} opts Object containing onLoad and onError callback functions.
              */
-            crossDomainPost: function(/*url, opts*/) { //jshint ignore:line
+            crossDomainPost: function (url, data, opts) {
+                var iframe, form;
+                var postRequestHasBeenSent = false;
+                var blankPageToLoad = opts.blankUrl || 'blank.html';
+                var timeoutHandle;
+
+                function iframeLoadTimeoutCallback() {
+                    iframe.onload = null;
+                    if (opts.onError) {
+                        opts.onError('timeout');
+                    }
+                }
+
+                function iframeLoadedCallback() {
+                    var urlLoadedIntoInvisibleIFrame, errorGettingIFrameLocation;
+                    try {
+                        urlLoadedIntoInvisibleIFrame = iframe.contentWindow.location.href;
+                    } catch (exception) {
+                        errorGettingIFrameLocation = exception;
+                    }
+
+                    if (errorGettingIFrameLocation || !urlLoadedIntoInvisibleIFrame) {
+                        // we didn't load the page - give the browser a second chance to load the iframe
+                        setTimeout(function () {
+                            iframe.src = blankPageToLoad + '#2';
+                        }, 500);
+                        return;
+                    }
+
+                    if (postRequestHasBeenSent === false) {
+                        postRequestHasBeenSent = true;
+
+                        createForm();
+                        for (var name in data) {
+                            if(data.hasOwnProperty(name)){
+                                createField(name, data[name]);
+                            }
+                        }
+                        form.submit();
+                    } else {
+                        if (timeoutHandle) {
+                            clearTimeout(timeoutHandle);
+                        }
+
+                        iframe.onload = null;
+                        try {
+                            var responseData = iframe.contentWindow.name;
+                            iframe.parentNode.removeChild(iframe);
+                            if (opts.onLoad) {
+                                opts.onLoad(responseData);
+                            }
+                        } catch (exception) {
+                            if (opts.onError) {
+                                opts.onError(exception);
+                            }
+                        }
+                    }
+                }
+
+                function createForm() {
+                    var doc = iframe.contentWindow.document;
+                    form = doc.createElement('form');
+                    form.method = 'POST';
+                    form.action = url;
+                    doc.body.appendChild(form);
+                }
+
+                function createField(name, value) {
+                    var input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = name;
+                    input.value = value;
+                    form.appendChild(input);
+                }
+
+                function createIframe() {
+                    iframe = document.createElement('iframe');
+                    iframe.style.width = '0';
+                    iframe.style.height = '0';
+                    iframe.src = blankPageToLoad + '#1';
+                    iframe.onload = iframeLoadedCallback;
+                    document.body.appendChild(iframe);
+                }
+
+                timeoutHandle = setTimeout(iframeLoadTimeoutCallback, (opts.timeout || 10) * 1000);
+                /* 10 second default */
+                createIframe();
             },
             /**
              * Performs a cross domain GET for a decoded JSON object utilising CORS if supported by
              * the device, falling back to a JSON-P call otherwise.
              * @param {String} url The URL to load. A callback GET parameter will be appended if JSON-P is used.
-             * @param {Object} callbacks Object containing onSuccess and onError callbacks. onSuccess will be called
-             * with the decoded JSON object if the call is successful.
-             * @param {Object} [options] Options for the JSON-P fallback behaviour. All optional with sensible defaults.
-             * @param {Number} [options.timeout=5000] Timeout for the JSON-P call in ms. Default: 5000.
-             * @param {String} [options.id] Used in the callback function name for the JSON-P call. Default: a random string.
-             * @param {String} [options.callbackKey=callback] Key to use in query string when passing callback function name
+             * @param {Object} opts Object containing callbacks and an optional bearer token.
+             * @param {Function} [opts.onSuccess] Will be called with the decoded JSON object if the call is successful.
+             * @param {Function} [opts.onError] Will be called with error text, and HTTP status for CORS requests, if the calls fails.
+             * @param {String} [opts.bearerToken] Used when making requests for resources that require authentication.
+             * For CORS requests, the token is used as a Bearer token in an Authorization header (see RFC 6750, section 2.1), and for
+             * JSON-P requests the token is included as a query string parameter. If not specified, no token is included in the request.
+             * @param {Object} [jsonpOptions] Options for the JSON-P fallback behaviour. All optional with sensible defaults.
+             * @param {Number} [jsonpOptions.timeout=5000] Timeout for the JSON-P call in ms. Default: 5000.
+             * @param {String} [jsonpOptions.id] Used in the callback function name for the JSON-P call. Default: a random string.
+             * @param {String} [jsonpOptions.callbackKey=callback] Key to use in query string when passing callback function name
              * for JSON-P call. Default: callback
              */
-            executeCrossDomainGet: function(/*url, callbacks, options*/) { //jshint ignore:line
+            executeCrossDomainGet: function (url, opts, jsonpOptions) {
+                var self, callbackKey, callbackQuery, modifiedOpts;
+                self = this;
+                jsonpOptions = jsonpOptions || {};
+                if (configSupportsCORS(this.getConfig())) {
+                    modifiedOpts = {
+                        onLoad: function (jsonResponse) {
+                            opts.onSuccess(self.decodeJson(jsonResponse));
+                        },
+                        onError: opts.onError
+                    };
+
+                    if (opts.bearerToken) {
+                        modifiedOpts.headers = {
+                            Authorization: 'Bearer ' + opts.bearerToken
+                        };
+                    }
+
+                    this.loadURL(url, modifiedOpts);
+                } else {
+                    callbackKey = jsonpOptions.callbackKey || 'callback';
+                    callbackQuery = '?' + callbackKey + '=%callback%';
+                    if (url.indexOf('?') === -1) {
+                        url = url + callbackQuery;
+                    } else {
+                        url = url.replace('?', callbackQuery + '&');
+                    }
+
+                    if (opts.bearerToken) {
+                        url = url + '&bearerToken=' + opts.bearerToken;
+                    }
+
+                    this.loadScript(url, /%callback%/, opts, jsonpOptions.timeout, jsonpOptions.id);
+                }
             },
             /**
              * Performs a cross domain POST HTTP using CORS or the content delivered as a single form field value depending on device capability
              * @param {String} url The URL to post to.
              * @param {Object} data JavaScript object to be JSON encoded and delivered as payload.
-             * @param {Object} opts Object containing onLoad and onError callback functions and a fieldName property to be
-             * used for the name of the form filed if the iframe hack is used
+             * @param {Object} opts Object containing callback functions, a form field name and an optional bearer token.
+             * @param {String} opts.fieldName Name to be used for the POST form field for form based (non-CORS) requests.
+             * @param {Function} [opts.onLoad] Will be called with the decoded JSON response if the POST is successful.
+             * @param {Function} [opts.onError} Will be called with error text or an Exception object if the POST fails.
+             * @param {String} [opts.bearerToken] Used when making POST requests for resources that require authentication. For
+             * CORS requests, the token is used as a Bearer token in an Authorization header (see RFC 6750, section 2.1), and
+             * for form requests the token is included as a bearerToken form field value. If not specified, no token is included
+             * in the request.
              */
-            executeCrossDomainPost: function(/*url, data, opts*/) { //jshint ignore:line
+            executeCrossDomainPost: function (url, data, opts) {
+                var payload, modifiedOpts, formData;
+                payload = this.encodeJson(data);
+                if (configSupportsCORS(this.getConfig())) {
+                    modifiedOpts = {
+                        onLoad: opts.onLoad,
+                        onError: opts.onError,
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        data: payload,
+                        method: 'POST'
+                    };
+
+                    if (opts.bearerToken) {
+                        modifiedOpts.headers.Authorization = 'Bearer ' + opts.bearerToken;
+                    }
+
+                    this.loadURL(url, modifiedOpts);
+                } else {
+                    formData = {};
+                    formData[opts.fieldName] = payload;
+
+                    if (opts.bearerToken) {
+                        formData.bearerToken = opts.bearerToken;
+                    }
+
+                    this.crossDomainPost(url, formData, {
+                        onLoad: opts.onLoad,
+                        onError: opts.onError,
+                        blankUrl: opts.blankUrl
+                    });
+                }
             },
             /**
              * Forces the device to pre-load an image.
              * @param {String} url The URL of the image to preload.
              */
-            preloadImage: function(/*url*/) { //jshint ignore:line
+            preloadImage: function(/*url*/) {
             },
             /**
              * Checks to see if HD output is currently enabled.
@@ -729,7 +950,7 @@ require.def(
              * Set the current volume.
              * @param {Float} volume The new volume level (0.0 to 1.0).
              */
-            setVolume: function(/*volume*/) { //jshint ignore:line
+            setVolume: function(/*volume*/) {
             },
             /**
              * Check to see if the volume is currently muted.
@@ -741,7 +962,7 @@ require.def(
              * Mute or unmute the device.
              * @param {Boolean} muted The new muted state. Boolean true to mute, false to unmute.
              */
-            setMuted: function(/*muted*/) { //jshint ignore:line
+            setMuted: function(/*muted*/) {
             },
             /**
              * Check to see whether device has disabled animation.
@@ -766,13 +987,18 @@ require.def(
                 return false;
             }
         });
+
+        function configSupportsCORS(config) {
+            return config && config.networking && config.networking.supportsCORS;
+        }
+
         /**
-         * Loads a device configuration document from the given URL.
+         * Loads a device configuration document, and its modifiers.
          * @name load
          * @memberOf antie.devices.Device
          * @static
          * @function
-         * @param {String} configUrl URL to the device configuration document.
+         * @param {Object} config Device configuration document.
          * @param {Object} callbacks Object containing onSuccess and onError callback functions.
          */
         Device.load = function(config, callbacks) {
@@ -799,8 +1025,8 @@ require.def(
          * @memberOf antie.devices.Device
          * @static
          * @function
-         * @param {String} id of require module that defined the logging methods - eg antie/devices/logging/default
-         * @param {Object} an object that contains implementations of each logging interface ( log,debug,info,warn,error )
+         * @param {String} moduleId of require module that defined the logging methods - eg antie/devices/logging/default
+         * @param {Object} loggingMethods object that contains implementations of each logging interface ( log,debug,info,warn,error )
          */
 
         Device.addLoggingStrategy = function(moduleID, loggingMethods) {

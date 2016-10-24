@@ -1,30 +1,10 @@
 /**
- * @preserve Copyright (c) 2015 British Broadcasting Corporation
- * (http://www.bbc.co.uk) and TAL Contributors (1)
- *
- * (1) TAL Contributors are listed in the AUTHORS file and at
- *     https://github.com/fmtvp/TAL/AUTHORS - please extend this file,
- *     not this notice.
- *
- * @license Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * All rights reserved
- * Please contact us for an alternative licence
+ * @preserve Copyright (c) 2013-present British Broadcasting Corporation. All rights reserved.
+ * @license See https://github.com/fmtvp/tal/blob/master/LICENSE for full licence
  */
 
 (function () {
-    // jshint newcap: false
-    this.LivePlayerSupportLevelRestartableTest = AsyncTestCase('LivePlayerSupportLevelRestartableTest'); //jshint ignore:line
+    this.LivePlayerSupportLevelRestartableTest = AsyncTestCase('LivePlayerSupportLevelRestartableTest');
 
     this.LivePlayerSupportLevelRestartableTest.prototype.setUp = function () {
         this.sandbox = sinon.sandbox.create();
@@ -223,8 +203,8 @@
         }, config);
     };
 
-    this.LivePlayerSupportLevelRestartableTest.prototype.testAutoResumeWhenBeginPlaybackFromThenPausedAndStartOfRangeIsReached = function (queue) {
-        expectAsserts(1);
+    this.LivePlayerSupportLevelRestartableTest.prototype.testAutoResumeWhenBeginPlaybackFromThenPausedAndStartOfRangeIsApproached = function (queue) {
+        expectAsserts(2);
         queuedApplicationInit(queue, 'lib/mockapplication', ['antie/devices/mediaplayer/mediaplayer', 'antie/devices/device', 'antie/devices/mediaplayer/live/restartable'], function (application, MediaPlayer, Device) {
             var device = new Device(antie.framework.deviceConfiguration);
             var livePlayer = device.getLivePlayer();
@@ -237,7 +217,11 @@
             var clock = sinon.useFakeTimers();
             livePlayer.beginPlaybackFrom(30);
             livePlayer.pause();
-            clock.tick(30 * 1000);
+            clock.tick(21 * 1000);
+
+            assert(livePlayer._mediaPlayer.resume.notCalled);
+
+            clock.tick(1 * 1000);
 
             assert(livePlayer._mediaPlayer.resume.called);
 
@@ -245,8 +229,8 @@
         }, config);
     };
 
-    this.LivePlayerSupportLevelRestartableTest.prototype.testAutoResumeWhenBeginPlaybackThenPausedAndStartOfRangeIsReached = function (queue) {
-        expectAsserts(1);
+    this.LivePlayerSupportLevelRestartableTest.prototype.testAutoResumeWhenBeginPlaybackThenPausedAndStartOfRangeIsApproached = function (queue) {
+        expectAsserts(2);
         queuedApplicationInit(queue, 'lib/mockapplication', ['antie/devices/mediaplayer/mediaplayer', 'antie/devices/device', 'antie/devices/mediaplayer/live/restartable'], function (application, MediaPlayer, Device) {
             var device = new Device(antie.framework.deviceConfiguration);
             var livePlayer = device.getLivePlayer();
@@ -262,15 +246,20 @@
             livePlayer.beginPlayback();
             livePlayer._mediaPlayer._emitEvent(MediaPlayer.EVENT.PLAYING);
             livePlayer.pause();
-            clock.tick(30 * 1000);
+            clock.tick(21 * 1000);
+
+            assert(livePlayer._mediaPlayer.resume.notCalled);
+
+            clock.tick(1 * 1000);
 
             assert(livePlayer._mediaPlayer.resume.called);
 
             clock.restore();
+
         }, config);
     };
 
-    this.LivePlayerSupportLevelRestartableTest.prototype.testAutoResumeWhenPausedMultipleTimesAndStartOfRangeIsReached = function (queue) {
+    this.LivePlayerSupportLevelRestartableTest.prototype.testAutoResumeWhenPausedMultipleTimesAndStartOfRangeIsApproached = function (queue) {
         expectAsserts(1);
         queuedApplicationInit(queue, 'lib/mockapplication', ['antie/devices/mediaplayer/mediaplayer', 'antie/devices/device', 'antie/devices/mediaplayer/live/restartable'], function (application, MediaPlayer, Device) {
             var device = new Device(antie.framework.deviceConfiguration);
@@ -285,10 +274,10 @@
             var clock = sinon.useFakeTimers();
             livePlayer.beginPlaybackFrom(30);
             livePlayer.pause();
-            clock.tick(15 * 1000);
+            clock.tick(21 * 1000);
             livePlayer._mediaPlayer._emitEvent(MediaPlayer.EVENT.PLAYING);
             livePlayer.pause();
-            clock.tick(15 * 1000);
+            clock.tick(1 * 1000);
 
             assert(livePlayer._mediaPlayer.resume.called);
 
@@ -296,7 +285,7 @@
         }, config);
     };
 
-    this.LivePlayerSupportLevelRestartableTest.prototype.testAutoResumeCancelledWhenPausedAndResumedBeforeStartOfRangeIsReached = function (queue) {
+    this.LivePlayerSupportLevelRestartableTest.prototype.testAutoResumeCancelledWhenPausedAndResumedBeforeStartOfRangeIsApproached = function (queue) {
         expectAsserts(1);
         queuedApplicationInit(queue, 'lib/mockapplication', ['antie/devices/mediaplayer/mediaplayer', 'antie/devices/device', 'antie/devices/mediaplayer/live/restartable'], function (application, MediaPlayer, Device) {
             var device = new Device(antie.framework.deviceConfiguration);
@@ -313,7 +302,7 @@
             livePlayer.pause();
 
             livePlayer._mediaPlayer._emitEvent(MediaPlayer.EVENT.PLAYING);
-            clock.tick(30 * 1000);
+            clock.tick(22 * 1000);
 
             assert(livePlayer._mediaPlayer.resume.notCalled);
 
@@ -392,7 +381,7 @@
 
             livePlayer._mediaPlayer.getState.returns(MediaPlayer.STATE.PAUSED);
             livePlayer._mediaPlayer._emitEvent(MediaPlayer.EVENT.SENTINEL_PAUSE);
-            clock.tick(30 * 1000);
+            clock.tick(22 * 1000);
 
             assert(livePlayer._mediaPlayer.resume.called);
 
@@ -419,14 +408,14 @@
             livePlayer._mediaPlayer.getState.returns(MediaPlayer.STATE.BUFFERING);
             livePlayer._mediaPlayer._emitEvent(MediaPlayer.EVENT.BUFFERING);
 
-            clock.tick(10 * 1000);
+            clock.tick(21 * 1000);
 
             livePlayer._mediaPlayer.getState.returns(MediaPlayer.STATE.PLAYING);
             livePlayer._mediaPlayer._emitEvent(MediaPlayer.EVENT.PLAYING);
 
             livePlayer.pause();
 
-            clock.tick(20 * 1000);
+            clock.tick(1 * 1000);
 
             assert(livePlayer._mediaPlayer.resume.called);
 
@@ -455,14 +444,14 @@
             livePlayer._mediaPlayer.getState.returns(MediaPlayer.STATE.BUFFERING);
             livePlayer._mediaPlayer._emitEvent(MediaPlayer.EVENT.BUFFERING);
 
-            clock.tick(10 * 1000);
+            clock.tick(21 * 1000);
 
             livePlayer._mediaPlayer.getState.returns(MediaPlayer.STATE.PLAYING);
             livePlayer._mediaPlayer._emitEvent(MediaPlayer.EVENT.PLAYING);
 
             livePlayer.pause();
 
-            clock.tick(20 * 1000);
+            clock.tick(1 * 1000);
 
             assert(livePlayer._mediaPlayer.resume.called);
 

@@ -4,7 +4,6 @@
     "base": "antie/devices/browserdevice",
     "modifiers": [
       "antie/devices/anim/css3",
-      "antie/devices/media/html5",
       "antie/devices/mediaplayer/html5",
       "antie/devices/mediaplayer/live/none",
       "antie/devices/data/nativejson",
@@ -12,7 +11,6 @@
       "antie/devices/logging/xhr",
       "antie/devices/logging/jstestdriver",
       "antie/devices/storage/cookie",
-      "antie/devices/net/default",
       "antie/devices/exit/closewindow",
       "antie/devices/parentalguidance/appdefaultpghandler"
     ]

@@ -1,5 +1,3 @@
-/* Surpression of JSHint 'Don't make functions within a loop'*/
-/* jshint -W083 */
 /**
  * @fileOverview Requirejs module containing antie.Class top-level base class.
  *
@@ -9,7 +7,7 @@
  * @author John Resig <eresig@gmail.com>
  */
 
-require.def('antie/class', function() {
+define('antie/class', function() {
     "use strict";
     var initializing = false, fnTest = /var xyz/.test(function () { var xyz; }) ? /\b_super\b/ : /.*/;
 

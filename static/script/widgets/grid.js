@@ -1,30 +1,10 @@
 /**
  * @fileOverview Requirejs module containing the antie.widgets.Grid class.
- *
- * @preserve Copyright (c) 2013 British Broadcasting Corporation
- * (http://www.bbc.co.uk) and TAL Contributors (1)
- *
- * (1) TAL Contributors are listed in the AUTHORS file and at
- *     https://github.com/fmtvp/TAL/AUTHORS - please extend this file,
- *     not this notice.
- *
- * @license Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * All rights reserved
- * Please contact us for an alternative licence
+ * @preserve Copyright (c) 2013-present British Broadcasting Corporation. All rights reserved.
+ * @license See https://github.com/fmtvp/tal/blob/master/LICENSE for full licence
  */
 
-require.def(
+define(
     'antie/widgets/grid',
     [
         'antie/widgets/container',
@@ -149,7 +129,7 @@ require.def(
              * Appends a child widget to this widget. Not supported for Grids.
              * @param {antie.widgets.Widget} widget The child widget to add.
              */
-            appendChildWidget: function (/*widget*/) { //jshint ignore:line
+            appendChildWidget: function (/*widget*/) {
                 throw new Error('Not supported');
             },
             /**
@@ -157,7 +137,7 @@ require.def(
              * @param {Integer} index The index where to insert the child widget.
              * @param {antie.widgets.Widget} widget The child widget to add.
              */
-            insertChildWidget: function (/*index, widget*/) { //jshint ignore:line
+            insertChildWidget: function (/*index, widget*/) {
                 throw new Error('Not supported');
             },
             /**
@@ -165,7 +145,7 @@ require.def(
              * @param {antie.widgets.Widget} widget The child widget to remove.
              * @param {Boolean} [retainElement] Pass <code>true</code> to retain the child output element of the given widget
              */
-            removeChildWidget: function (/*widget, retainElement*/) { //jshint ignore:line
+            removeChildWidget: function (/*widget, retainElement*/) {
                 throw new Error('Not supported');
             },
             /**

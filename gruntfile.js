@@ -1,4 +1,3 @@
-/* jshint node: true */
 module.exports = function(grunt) {
     'use strict';
 
@@ -11,18 +10,6 @@ module.exports = function(grunt) {
             ],
             options: {
                 quiet: true
-            }
-        },
-        jshint: {
-            files: ['static/script/**/*.js'],
-            options: {
-                jshintrc: '.jshintrc',
-                ignores: [
-                    'static/script/lib/*',
-                    'static/script/devices/googletv.js',
-                    'static/script/devices/data/json2.js',
-                    'static/script/widgets/horizontalcarousel.js'
-                ]
             }
         },
         jasmine: {
@@ -56,9 +43,9 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            jshint: {
+            eslint: {
                 files: ['static/script/**/*.js'],
-                tasks: ['jshint']
+                tasks: ['eslint']
             }
         },
         complexity: {
@@ -97,11 +84,11 @@ module.exports = function(grunt) {
                 files: ['package.json', 'bower.json'],
                 updateConfigs: [],
                 commit: true,
-                commitMessage: 'Release v%VERSION%',
+                commitMessage: 'Release v%VERSION%' + (grunt.option('m') ? ' - ' + grunt.option('m') : ''),
                 commitFiles: ['package.json', 'bower.json'],
                 createTag: true,
                 tagName: '%VERSION%',
-                tagMessage: 'Version %VERSION%',
+                tagMessage: 'Version %VERSION%' + (grunt.option('m') ? ' - ' + grunt.option('m') : ''),
                 push: true,
                 pushTo: 'origin',
                 gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d',
@@ -114,41 +101,29 @@ module.exports = function(grunt) {
             coverage: {
                 command: 'cd static/script-tests/jasmine; pwd; ./coverage.sh -p;'
             }
+        },
+        jsdoc: {
+            dist: {
+                src: ['static/script/*/**.js'],
+                options: {
+                    destination: 'jsdoc'
+                }
+            }
         }
-    });
-
-    grunt.registerTask('generate-jsdoc', 'Generate JsDoc for TAL', function() {
-        var path = require('path');
-        var execSync = require('exec-sync');
-
-        if (grunt.file.exists('jsdoc/symbols')) {
-            grunt.file.delete('jsdoc/symbols');
-        }
-        grunt.file.recurse('static/script', function(absPath, rootDir, subDir, fileName) {
-            subDir = subDir || '';
-            grunt.file.copy(absPath, path.join('antie', 'static', 'script', subDir, fileName));
-        });
-
-        execSync('node_modules/jsdoc-toolkit/app/run.js -r=10 -t=node_modules/jsdoc-toolkit/templates/jsdoc -d=jsdoc antie/static/script');
-        grunt.file.delete('antie');
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-complexity');
     grunt.loadNpmTasks('grunt-text-replace');
-    grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-bump');
     grunt.loadNpmTasks('gruntify-eslint');
+    grunt.loadNpmTasks('grunt-jsdoc');
 
-
-    grunt.registerTask('hint', ['jshint']);
-    grunt.registerTask('test', ['jasmine']);
+    grunt.registerTask('test', ['jasmine', 'eslint']);
     grunt.registerTask('lint', ['eslint']);
 
-    grunt.registerTask('jsdoc', ['generate-jsdoc', 'replace:jsdoc-tidy']);
-    grunt.registerTask('full', ['jshint', 'eslint', 'jasmine']);
+    grunt.registerTask('full', ['eslint', 'jasmine']);
     grunt.registerTask('default', 'full');
     grunt.registerTask('coverage', 'Produce a coverage report of the main source files', ['jasmine:src:build', 'shell:coverage']);
     grunt.registerTask('spec', ['jasmine:src:build', 'openspec']);

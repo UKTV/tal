@@ -1,9 +1,9 @@
 /**
- * @preserve Copyright (c) 2015 British Broadcasting Corporation. All rights reserved.
+ * @preserve Copyright (c) 2013-present British Broadcasting Corporation. All rights reserved.
  * @license See https://github.com/fmtvp/tal/blob/master/LICENSE for full licence
  */
 
-require.def('antie/devices/broadcastsource/stubbedsource',
+define('antie/devices/broadcastsource/stubbedsource',
     [
         'antie/devices/browserdevice',
         'antie/devices/broadcastsource/basetvsource'

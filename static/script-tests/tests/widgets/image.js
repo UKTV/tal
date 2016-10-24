@@ -1,29 +1,10 @@
 /**
- * @preserve Copyright (c) 2013 British Broadcasting Corporation
- * (http://www.bbc.co.uk) and TAL Contributors (1)
- *
- * (1) TAL Contributors are listed in the AUTHORS file and at
- *     https://github.com/fmtvp/TAL/AUTHORS - please extend this file,
- *     not this notice.
- *
- * @license Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * All rights reserved
- * Please contact us for an alternative licence
+ * @preserve Copyright (c) 2013-present British Broadcasting Corporation. All rights reserved.
+ * @license See https://github.com/fmtvp/tal/blob/master/LICENSE for full licence
  */
 
 (function() {
-    this.ImageTest = AsyncTestCase('Image'); //jshint ignore:line
+    this.ImageTest = AsyncTestCase('Image');
 
     this.ImageTest.prototype.setUp = function() {
         this.sandbox = sinon.sandbox.create();
@@ -44,8 +25,9 @@
                 assert('Image should extend from Container', new Image() instanceof Container);
             });
     };
-    this.ImageTest.prototype.testRender = function(queue) {
-        expectAsserts(7);
+    
+    this.ImageTest.prototype.testRenderContainerMode = function(queue) {
+        expectAsserts(8);
 
         queuedApplicationInit(
             queue,
@@ -53,7 +35,8 @@
             ['antie/widgets/image'],
             function(application, Image) {
                 var size = {width: 107, height: 32};
-                var widget = new Image('id', 'about:blank', size);
+                var widget = new Image('id', 'about:blank', size, Image.RENDER_MODE_CONTAINER);
+                widget.addClass('testClass');
 
                 var device = application.getDevice();
                 var createImageSpy = this.sandbox.spy(device, 'createImage');
@@ -67,9 +50,65 @@
                 assertEquals(size.width + 'px', el.style.width);
                 assertEquals(size.height + 'px', el.style.height);
                 assertClassName('image', el);
+                assertClassName('testClass', el);
             }
         );
     };
+    
+    this.ImageTest.prototype.testRenderImgMode = function(queue) {
+        expectAsserts(6);
+
+        queuedApplicationInit(
+                queue,
+                'lib/mockapplication',
+                ['antie/widgets/image'],
+                function(application, Image) {
+                    var widget = new Image('id', 'about:blank', null, Image.RENDER_MODE_IMG);
+                    widget.addClass('testClass');
+
+                    var device = application.getDevice();
+                    var createImageSpy = this.sandbox.spy(device, 'createImage');
+                    var el = widget.render(device);
+
+                    assert(createImageSpy.called);
+                    assertEquals(typeof device.createImage(), typeof el);
+                    assertEquals('id_img', el.id);
+                    assertEquals('about:blank', el.src);
+                    assertClassName('image', el);
+                    assertClassName('testClass', el);
+                }
+        );
+    };
+
+    this.ImageTest.prototype.testRenderUnspecifiedMode = function(queue) {
+        expectAsserts(8);
+
+        queuedApplicationInit(
+                queue,
+                'lib/mockapplication',
+                ['antie/widgets/image'],
+                function(application, Image) {
+                    var size = {width: 107, height: 32};
+                    var widget = new Image('id', 'about:blank', size);
+                    widget.addClass('testClass');
+
+                    var device = application.getDevice();
+                    var createImageSpy = this.sandbox.spy(device, 'createImage');
+                    var el = widget.render(device);
+
+                    assert(createImageSpy.called);
+                    assertEquals(typeof device.createImage(), typeof el);
+                    assertEquals('id', el.id);
+                    var img = el.getElementsByTagName('img')[0];
+                    assertEquals('about:blank', img.src);
+                    assertEquals(size.width + 'px', el.style.width);
+                    assertEquals(size.height + 'px', el.style.height);
+                    assertClassName('image', el);
+                    assertClassName('testClass', el);
+                }
+        );
+    };
+
 
     this.ImageTest.prototype.testSetGetSource = function(queue) {
         expectAsserts(2);

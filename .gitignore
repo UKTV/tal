@@ -5,9 +5,11 @@
 libpeerconnection.log
 *.iml
 node_modules
+**/*npm-debug.log
 .idea
 static/script-tests/jasmine/WebRunner.html
 .grunt
 jsdoc/index.html
 jsdoc/files.html
 jsdoc/symbols
+config/pagestrategy
