@@ -1,0 +1,86 @@
+<script type="text/javascript">
+/**
+ * AJB: Android JavaScript Bridge
+ * Very simple messaging buss for AppHostActivity.
+ */
+(function(scope) {
+
+  /**
+   * Known, default message types.
+   * In theory, extending the Android app could extend
+   * this collection of events, but not in this lifetime I imagine.
+   */
+  var MESSAGE_TYPES = {
+    NAVIGATION: 'navigation',
+    PLAYBACK: 'playback'
+  };
+
+  /**
+   * Hash for storing messageType/callback pairs.
+   */
+  var listeners = {};
+
+  var ajb = {
+    /**
+     * Expose the message type constants for clients to use.
+     */
+    MessageType: MESSAGE_TYPES,
+
+    /**
+     * Assigns a callback function to a message type.
+     */
+    registerListener: function(messageType, listener) {
+      listeners[messageType] = listener;
+    },
+
+    /**
+     * The entry point for all messages send from the containing Android application.
+     * Messages are constructed as {type: 'someType', value: {[ANY_JS_OBJECT]}};
+     * The value is sent to the callback, if any, that is assigned to the message type
+     * and the value object is the only argument.
+     * Any return value is sent back to the Android application.
+     * The return value is potentially important, as in the case of navigation.
+     * The Android app will need to know whether the web app was able to handle backward navigation (true)
+     * as if it doesn't (false) then it will handle backward navigation itself, i.e. exit the app.
+     */
+    receiveMessage: function(messageJSON) {
+      try {
+        var message = JSON.parse(messageJSON);
+        var messageType = message.type;
+        if (listeners[message.type] && typeof listeners[message.type] === 'function') {
+          return !!listeners[message.type](message);
+        }
+      } catch (e) {
+        console.warn('failed to parse received json ' + e);
+      }
+      return false;
+    },
+
+    /**
+     * Sends the given data to the Android app.
+     */
+    sendMessage: function(messageType, messageData) {
+      AJBHost.receiveMessage(JSON.stringify({
+        type: messageType,
+        value: messageData || {}
+      }));
+    },
+
+    /**
+     *
+     */
+    exitApp: function() {
+        ajb.sendMessage('exitApp');
+    },
+
+    playVideo: function(opts) {
+        ajb.sendMessage('playVideo', opts);
+    }
+  };
+
+  // Assign the object to the given scope.
+  scope.ajb = ajb;
+  console.log('**** AJB Initialized *****');
+
+})(window);
+</script>
